@@ -1,0 +1,41 @@
+.lotationWrapper {
+  display: block;
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.lotationWrapper > div {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  transition: transform 1s;
+}
+
+.lotationWrapper > .item-0,
+.lotationWrapper > .item-1,
+.lotationWrapper > .item-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  opacity: 1;
+  visibility: visible;
+  background: red;
+  text-align: center;
+  line-height: 30px;
+}
+
+.lotationWrapper > .item-0 {
+  transform: translate(250px, 0);
+}
+
+.lotationWrapper > .item-1 {
+  transform: translate(500px, 500px);
+}
+
+.lotationWrapper > .item-2 {
+  transform: translate(0, 500px);
+}
