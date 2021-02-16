@@ -25,13 +25,10 @@ const getNextSelected = (
 
 const getNextPositions = (direction: number = 1, positions: number[]) => {
 	const { length } = positions;
-	if (direction > 0) {
-		return positions.map((position) => (position + 1) % length);
-	}
-	return positions.map((position) => {
-		const nextPos = position - 1;
-		return nextPos >= 0 ? nextPos : (nextPos + length) % length;
-	});
+
+	if (direction > 0) return positions.map(pos => (pos + 1) % length);
+
+	return positions.map(pos => (pos + length - 1) % length);
 };
 
 export default function Lotation() {
