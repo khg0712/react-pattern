@@ -9,7 +9,7 @@
 	opacity: 0;
 	visibility: hidden;
 	height: 0;
-	transition: transform 1s;
+	transition: transform 0.5s;
 }
 
 .lotationWrapper > .item-0,
