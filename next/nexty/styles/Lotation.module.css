@@ -16,8 +16,8 @@
 .lotationWrapper > .item-1,
 .lotationWrapper > .item-2 {
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 50px;
+	left: 50px;
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
@@ -28,15 +28,15 @@
 }
 
 .lotationWrapper > .item-0 {
-	transform: translate(0, 500px);
+	transform: translate(0, 450px);
 }
 
 .lotationWrapper > .item-1 {
-	transform: translate(500px, 500px);
+	transform: translate(450px, 450px) scale(2);
 }
 
 .lotationWrapper > .item-2 {
-	transform: translate(250px, 0);
+	transform: translate(200px, 100px) scale(4);
 }
 
 .lotationWrapper > div:nth-child(1) {

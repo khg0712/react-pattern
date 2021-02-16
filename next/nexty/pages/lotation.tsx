@@ -20,38 +20,36 @@ function LotationItem({ onClick, value, order }: LotationItemProp) {
 interface LotationWrapperProp {
 	selectedIds: number[];
 	items: Product[];
+	positions: number[];
+	phase: number;
 }
 
-function getOrders(selectedIds: number[], items: Product[]): number[] {
-	const length = selectedIds.length;
-	const firstIndex = items.findIndex((v) => v.id === selectedIds[0]);
-	switch (firstIndex % length) {
-		case 0:
-			return [0, 1, 2];
-		case 1:
-			return [1, 2, 0];
-		case 2:
-			return [2, 0, 1];
-		default:
-			return [0, 1, 2];
-	}
-}
+function LotationWrapper({
+	selectedIds,
+	items,
+	positions,
+	phase,
+}: LotationWrapperProp) {
+	const selectedItems = selectedIds.map(
+		(selectedId) => items.find(({ id }) => id === selectedId) as Product
+	);
+	const indexes = selectedIds.map((_, i) => {
+		const { length } = selectedIds;
+		const index = (phase + i) % length;
+		return index >= 0 ? index : (index + length) % length;
+	});
 
-function LotationWrapper({ selectedIds, items }: LotationWrapperProp) {
-	const selectedItems = items
-		.filter((item) => selectedIds.indexOf(item.id) > -1)
-		.map((v) => ({
-			...v,
-		}));
-	const orders = getOrders(selectedIds, items);
+	console.log(indexes);
+
 	const selectedItemEls = selectedItems.map((item, i, arr) => {
-		console.log(orders[i]);
-		return <LotationItem value={arr[i]} order={orders[i]} key={i} />;
+		return (
+			<LotationItem value={arr[indexes[i]]} order={positions[i]} key={i} />
+		);
 	});
 	return (
 		<>
 			<div className={style.lotationWrapper}>{selectedItemEls}</div>
-			<div style={{ marginLeft: 50 }}>{selectedIds.join(", ")}</div>
+			<div style={{ marginLeft: 0 }}>{selectedIds.join(", ")}</div>
 		</>
 	);
 }
@@ -82,6 +80,17 @@ const getNextItems = (
 	return nextItems.map(({ id }) => id);
 };
 
+const getNextPositions = (direction: number = 1, positions: number[]) => {
+	const { length } = positions;
+	if (direction > 0) {
+		return positions.map((position) => (position + 1) % length);
+	}
+	return positions.map((position) => {
+		const nextPos = position - 1;
+		return nextPos >= 0 ? nextPos : (nextPos + length) % length;
+	});
+};
+
 export default function Lotation() {
 	const [items, setItems] = useState<Product[]>([
 		{ id: 1, name: "A" },
@@ -90,25 +99,35 @@ export default function Lotation() {
 		{ id: 4, name: "D" },
 		{ id: 5, name: "E" },
 		{ id: 6, name: "F" },
+		{ id: 7, name: "G" },
 	]);
 
 	const [selected, setSelected] = useState([1, 2, 3]);
+	const [positions, setPostions] = useState([0, 1, 2]);
+	const [phase, setPhase] = useState(0);
 
 	const onLeft = () => {
 		const next = getNextItems(-1, items, selected);
-		console.log(next);
 		setSelected(next);
+		setPostions(getNextPositions(-1, positions));
+		setPhase(phase + 1);
 	};
 
 	const onRight = () => {
 		const next = getNextItems(1, items, selected);
-		console.log(next);
 		setSelected(next);
+		setPostions(getNextPositions(1, positions));
+		setPhase(phase - 1);
 	};
 
 	return (
 		<div className={style.wrapper}>
-			<LotationWrapper selectedIds={selected} items={items} />
+			<LotationWrapper
+				selectedIds={selected}
+				items={items}
+				positions={positions}
+				phase={phase}
+			/>
 			<div style={{ marginTop: 50 }}>
 				<button onClick={onLeft}>left</button>
 				<button onClick={onRight}>right</button>
