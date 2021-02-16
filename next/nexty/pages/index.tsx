@@ -8,20 +8,19 @@ const getNextSelected = (
 	items: Product[],
 	selected: number[]
 ) => {
-	const concattedItems = items.concat(items);
+	const concattedItems = items.concat(items).map(v => v.id);
 
 	if (direction > 0) {
 		const firstId = selected[0];
-		const nextIndex = concattedItems.findIndex(({ id }) => firstId === id);
-		const nextItems = concattedItems.slice(nextIndex + 1, nextIndex + 4);
-		return nextItems.map(({ id }) => id);
+		const nextStart = concattedItems.indexOf(firstId) + 1;
+		const nextItems = concattedItems.slice(nextStart, nextStart + selected.length);
+		return nextItems;
 	}
 
 	const lastId = selected[selected.length - 1];
-	const nextIndex =
-		concattedItems.findIndex(({ id }) => lastId === id) + items.length - 2;
-	const nextItems = concattedItems.slice(nextIndex - 1, nextIndex + 2);
-	return nextItems.map(({ id }) => id);
+	const nextStart = concattedItems.indexOf(lastId) + items.length - selected.length;
+	const nextItems = concattedItems.slice(nextStart, nextStart + selected.length);
+	return nextItems;
 };
 
 const getNextPositions = (direction: number = 1, positions: number[]) => {
