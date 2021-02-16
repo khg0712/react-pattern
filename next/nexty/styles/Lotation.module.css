@@ -18,13 +18,13 @@
 	position: absolute;
 	top: 50px;
 	left: 50px;
-	width: 30px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	opacity: 1;
 	visibility: visible;
 	text-align: center;
-	line-height: 30px;
+	line-height: 50px;
 }
 
 .lotationWrapper > .item-0 {
@@ -32,11 +32,11 @@
 }
 
 .lotationWrapper > .item-1 {
-	transform: translate(450px, 450px) scale(2);
+	transform: translate(200px, 100px) scale(3);
 }
 
 .lotationWrapper > .item-2 {
-	transform: translate(200px, 100px) scale(4);
+	transform: translate(450px, 450px);
 }
 
 .lotationWrapper > div:nth-child(1) {

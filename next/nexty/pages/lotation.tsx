@@ -102,21 +102,21 @@ export default function Lotation() {
 		{ id: 7, name: "G" },
 	]);
 
-	const [selected, setSelected] = useState([1, 2, 3]);
+	const [selected, setSelected] = useState([7, 1, 2]);
 	const [positions, setPostions] = useState([0, 1, 2]);
 	const [phase, setPhase] = useState(0);
 
 	const onLeft = () => {
 		const next = getNextItems(-1, items, selected);
 		setSelected(next);
-		setPostions(getNextPositions(-1, positions));
+		setPostions(getNextPositions(1, positions));
 		setPhase(phase + 1);
 	};
 
 	const onRight = () => {
 		const next = getNextItems(1, items, selected);
 		setSelected(next);
-		setPostions(getNextPositions(1, positions));
+		setPostions(getNextPositions(-1, positions));
 		setPhase(phase - 1);
 	};
 
