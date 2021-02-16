@@ -21,10 +21,8 @@ export default function Lotation() {
 				positions={positions}
 				phase={phase}
 			/>
-			<div className={style.buttonWrapper}>
-				<button onClick={onLeft}>left</button>
-				<button onClick={onRight}>right</button>
-			</div>
+			<button className={`${style.button} ${style.left}`} onClick={onLeft}>left</button>
+			<button className={`${style.button} ${style.right}`} onClick={onRight}>right</button>
 		</div>
 	);
 }
