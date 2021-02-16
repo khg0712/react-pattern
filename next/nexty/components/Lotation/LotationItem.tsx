@@ -9,7 +9,7 @@ interface LotationItemProp {
 
 function getClassName(order: number) {
 	const className = `item-${order}`;
-	if (order < 3) return style[className];
+	if (order < 3) return `${style.visible} ${style[className]}`;
 	return undefined;
 }
 
@@ -19,5 +19,9 @@ export default function LotationItem({
 	order,
 }: LotationItemProp) {
 	const className = getClassName(order);
-	return <div className={className}>{value.name}</div>;
+	return (
+		<div className={`${style.lotationItem} ${className}`} onClick={onClick}>
+			{value.name}
+		</div>
+	);
 }

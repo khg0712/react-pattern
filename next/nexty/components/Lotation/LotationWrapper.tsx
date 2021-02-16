@@ -24,8 +24,6 @@ export default function LotationWrapper({
 		return index >= 0 ? index : (index + length) % length;
 	});
 
-	console.log(indexes);
-
 	const selectedItemEls = selectedItems.map((item, i, arr) => {
 		return (
 			<LotationItem value={arr[indexes[i]]} order={positions[i]} key={i} />

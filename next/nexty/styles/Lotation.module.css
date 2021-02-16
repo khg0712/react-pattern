@@ -6,25 +6,27 @@
 }
 
 .lotationWrapper > div {
+	/* 보이지 않는 요소를 위한 스타일 */
 	opacity: 0;
 	visibility: hidden;
 	height: 0;
-	transition: transform 0.5s;
 }
 
-.lotationWrapper > .item-0,
-.lotationWrapper > .item-1,
-.lotationWrapper > .item-2 {
+.lotationWrapper > .lotationItem.visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+.lotationWrapper > .lotationItem {
 	position: absolute;
 	top: 50px;
 	left: 50px;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	opacity: 1;
-	visibility: visible;
 	text-align: center;
 	line-height: 50px;
+	transition: transform 0.5s;
 }
 
 .lotationWrapper > .item-0 {
@@ -39,14 +41,14 @@
 	transform: translate(450px, 450px);
 }
 
-.lotationWrapper > div:nth-child(1) {
+.lotationWrapper > .lotationItem:nth-child(1) {
 	background-color: red;
 }
 
-.lotationWrapper > div:nth-child(2) {
+.lotationWrapper > .lotationItem:nth-child(2) {
 	background-color: blue;
 }
 
-.lotationWrapper > div:nth-child(3) {
+.lotationWrapper > .lotationItem:nth-child(3) {
 	background-color: green;
 }
