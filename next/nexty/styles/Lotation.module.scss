@@ -1,0 +1,68 @@
+.lotationWrapper {
+  $wrapper_width: 500px;
+  $wrapper_height: 500px;
+
+  display: block;
+  position: relative;
+  width: $wrapper_width;
+  height: $wrapper_height;
+  margin: 0 auto;
+
+  > div {
+    /* 보이지 않는 요소를 위한 스타일 */
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+  }
+
+  .lotationItem {
+    $width: 100px;
+    $height: 100px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $width;
+    height: $height;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    transition: transform 0.5s;
+
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &.item-0 {
+      $y: ($wrapper_height - $height);
+      transform: translate(0, $y);
+    }
+
+    &.item-1 {
+      $w: $width * 2;
+      $h: $height * 2;
+      $x: ($wrapper_width - $w - $width);
+      $y: ($h - $height) / 2;
+      transform: translate($x, $y) scale(2);
+    }
+
+    &.item-2 {
+      $x: ($wrapper_width - $width);
+      $y: ($wrapper_height - $height);
+      transform: translate($x, $y);
+    }
+
+    &:nth-child(1) {
+      background-color: red;
+    }
+
+    &:nth-child(2) {
+      background-color: green;
+    }
+
+    &:nth-child(3) {
+      background-color: blue;
+    }
+  }
+}

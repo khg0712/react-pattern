@@ -1,7 +1,7 @@
 import React from "react";
 import LotationWrapper from "../components/Lotation/LotationWrapper";
 import useLotation from "../hooks/useLotation";
-import style from "../styles/Lotation.module.css";
+import style from "../styles/Lotation.module.scss";
 
 export default function Lotation() {
 	const {
@@ -21,7 +21,7 @@ export default function Lotation() {
 				positions={positions}
 				phase={phase}
 			/>
-			<div style={{ marginTop: 50 }}>
+			<div className={style.buttonWrapper}>
 				<button onClick={onLeft}>left</button>
 				<button onClick={onRight}>right</button>
 			</div>

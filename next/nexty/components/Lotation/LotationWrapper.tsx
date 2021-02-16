@@ -1,6 +1,6 @@
 import { Product } from "../../types/Product";
 import LotationItem from "./LotationItem";
-import style from "../../styles/Lotation.module.css";
+import style from "../../styles/Lotation.module.scss";
 
 interface LotationWrapperProp {
 	selectedIds: number[];
@@ -29,5 +29,5 @@ export default function LotationWrapper({
 			<LotationItem value={arr[indexes[i]]} order={positions[i]} key={i} />
 		);
 	});
-	return <div className={style.lotationWrapper}>{selectedItemEls}</div>;
+	return <ol className={style.lotationWrapper}>{selectedItemEls}</ol>;
 }

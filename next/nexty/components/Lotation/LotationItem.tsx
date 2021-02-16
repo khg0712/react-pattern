@@ -1,5 +1,5 @@
 import { Product } from "../../types/Product";
-import style from "../../styles/Lotation.module.css";
+import style from "../../styles/Lotation.module.scss";
 
 interface LotationItemProp {
 	onClick?: () => void;
@@ -20,8 +20,8 @@ export default function LotationItem({
 }: LotationItemProp) {
 	const className = getClassName(order);
 	return (
-		<div className={`${style.lotationItem} ${className}`} onClick={onClick}>
+		<li className={`${style.lotationItem} ${className}`} onClick={onClick}>
 			{value.name}
-		</div>
+		</li>
 	);
 }
