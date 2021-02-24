@@ -1,10 +1,18 @@
-export function request<T extends Object>(constructor: T, key: string, descriptor: PropertyDescriptor) {
-    console.log(constructor);
-    console.log(key);
-    console.log(descriptor);
+import { expect } from 'chai';
+import requestDecorator from './requestDecorator';
 
-    const apiAction = async function() {
-        
-    }
-}
-
+describe('requestDecorator', () => {
+    it('can handle async error', () => {
+        class Mock {
+            @requestDecorator
+            test() {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        reject("ERROR OCCURED");
+                    }, 10);
+                });
+            }
+        }
+        expect(new Mock().test).not.throw();
+    })
+})
