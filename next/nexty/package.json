@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "mocha --reporter spec"
+    "test": "mocha --require ts-node/register --reporter spec **/*.spec.ts"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -23,6 +23,7 @@
     "@types/react-dom": "^17.0.1",
     "chai": "^4.3.0",
     "mocha": "^8.3.0",
+    "ts-node": "^9.1.1",
     "typescript": "^4.1.5"
   }
 }
