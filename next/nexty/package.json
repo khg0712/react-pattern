@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "mocha --require ts-node/register --reporter spec **/*.spec.ts"
+    "test": "mocha"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -25,5 +25,16 @@
     "mocha": "^8.3.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.5"
+  },
+  "mocha": {
+    "require": "ts-node/register",
+    "diff": true,
+    "extension": ["ts"],
+    "reporter": "min",
+    "timeout": 2000,
+    "parallel": true,
+    "watch": true,
+    "watch-files": ["./**/*.spec.ts"],
+    "spec": "./**/*.spec.ts"
   }
 }
