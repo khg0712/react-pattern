@@ -9,9 +9,7 @@ export default function request<T extends AsyncFunction>(constructor: Object, ke
             console.error(e);
         }
     }
+    descriptor.value = overrideMethod as T;
 
-    return {
-        ...descriptor,
-        value: overrideMethod as T
-    };
+    return descriptor
 }

@@ -3,7 +3,7 @@ import request from './requestDecorator';
 
 class MockRepository {
     static loadData(isSuccess = true) {
-        return new Promise((resolve, reject) => {
+        return new Promise<number>((resolve, reject) => {
             setTimeout(() => {
                 if (isSuccess) resolve(10)
                 else reject("ERROR OCCURED");
@@ -12,31 +12,37 @@ class MockRepository {
     }
 }
 class Mock {
-    data: any;
+    private _data = 0;
+
+    get data() {
+        return this._data;
+    }
 
     @request
     async successfulRequest() {
         const data = await MockRepository.loadData();
-        this.data = data;
+        this._data = data;
     }
 
     @request
     async failedRequest() {
         const data = await MockRepository.loadData(false);
-        this.data = data;
+        this._data = data;
     }
 }
 
 describe('requestDecorator', () => {
-
-    it('can resolve async function', async () => {
-        const mock = new Mock();
-        await mock.successfulRequest()
-        expect(mock.data).to.eq(10);
+    let model: Mock;
+    beforeEach(() => {
+        model = new Mock();
     })
 
-    it('can handle async error', async () => {
-        const mock = new Mock();
-        expect(await mock.failedRequest).not.throw();
+    it('객체 상태를 변화시킬 수 있다.', async () => {
+        await model.successfulRequest()
+        expect(model.data).to.eq(10);
+    })
+
+    it('에러가 발생하는 메서드가 죽지 않는다.', async () => {
+        expect(await model.failedRequest).not.throw();
     })
 })
